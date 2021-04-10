@@ -22,6 +22,28 @@ const span8 = document.querySelector(".textCopy8");
 const span9 = document.querySelector(".textCopy9");
 const span10 = document.querySelector(".textCopy10");
 
+span.textContent = 0;
+span2.textContent = 0;
+span3.textContent = 0;
+span4.textContent = 0;
+span5.textContent = 0;
+span6.textContent = 0;
+span7.textContent = 0;
+span8.textContent = 0;
+span9.textContent = 0;
+span10.textContent = 0;
+
+let res = 0;
+let res2 = 0;
+let res3 = 0;
+let res4 = 0;
+let res5 = 0;
+let res6 = 0;
+let res7 = 0;
+let res8 = 0;
+let res9 = 0;
+let res10 = 0;
+
 total = document.querySelector('.spTotal');
 totalCount = document.querySelector('.totalCount');
 
@@ -39,11 +61,10 @@ const observableInput = new Observable((suscriber) => {
 
 const suscriptor = observableInput
   .subscribe(
-    (response) => (span.textContent = `$${response * 1000}`), // next()
-    (error) => console.log(error), // error()
-    () => {
-      console.log("Complete Observable"); // complete()
-    }
+    (response) => {
+      span.textContent = `$${response * 1000}`
+      res = response * 1000
+    } 
   );
 
 /*-------------------------------  500  ----------------------------------------*/
@@ -62,11 +83,10 @@ const suscriptor = observableInput
   
   const suscriptor2 = observableInput2
     .subscribe(
-      (response) => (span2.textContent = `$${response * 500}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
-      }
+      (response) => {
+        span2.textContent = `$${response * 500}`
+        res2 = response * 500
+      } 
     );
 
     /*-------------------------------  200  ----------------------------------------*/
@@ -85,10 +105,9 @@ const suscriptor = observableInput
   
   const suscriptor3 = observableInput3
     .subscribe(
-      (response) => (span3.textContent = `$${response * 200}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span3.textContent = `$${response * 200}` // next()
+        res3 = response * 200
       }
     );
 
@@ -108,10 +127,9 @@ const suscriptor = observableInput
   
   const suscriptor4 = observableInput4
     .subscribe(
-      (response) => (span4.textContent = `$${response * 100}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span4.textContent = `$${response * 100}` // next()
+        res4 = response * 100
       }
     );
 
@@ -131,10 +149,9 @@ const suscriptor = observableInput
   
   const suscriptor5 = observableInput5
     .subscribe(
-      (response) => (span5.textContent = `$${response * 50}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span5.textContent = `$${response * 50}` // next()
+        res5 = response * 50
       }
     );
 
@@ -154,10 +171,9 @@ const suscriptor = observableInput
   
   const suscriptor6 = observableInput6
     .subscribe(
-      (response) => (span6.textContent = `$${response * 20}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span6.textContent = `$${response * 20}` // next()
+        res6 = response * 20
       }
     );
 
@@ -177,10 +193,9 @@ const suscriptor = observableInput
   
   const suscriptor7 = observableInput7
     .subscribe(
-      (response) => (span7.textContent = `$${response * 10}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span7.textContent = `$${response * 10}` // next()
+        res7 = response * 10
       }
     );
 
@@ -200,10 +215,9 @@ const suscriptor = observableInput
   
   const suscriptor8 = observableInput8
     .subscribe(
-      (response) => (span8.textContent = `$${response * 5}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span8.textContent = `$${response * 5}` // next()
+        res8 = response * 5
       }
     );
 
@@ -223,10 +237,9 @@ const suscriptor = observableInput
   
   const suscriptor9 = observableInput9
     .subscribe(
-      (response) => (span9.textContent = `$${response * 2}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span9.textContent = `$${response * 2}` // next()
+        res9 = response * 2
       }
     );
 
@@ -246,21 +259,17 @@ const suscriptor = observableInput
   
   const suscriptor10 = observableInput10
     .subscribe(
-      (response) => (span10.textContent = `$${response}`), // next()
-      (error) => console.log(error), // error()
-      () => {
-        console.log("Complete Observable"); // complete()
+      (response) => {
+        span10.textContent = `$${response * 1}` // next()
+        res10 = response * 1
       }
     );
 
-    let res = '';
+   
+   
 
-    const suma = observableInput.subscribe((response) => {
-      total.textContent = response * 1000
-      res = total.textContent
+
+    fromEvent(totalCount, 'click').subscribe(() => {
+      total.textContent = `$${res + res2 + res3 + res4 + res5 + res6 + res7 + res8 + res9 + res10}`;
     });
-
-
-
-    fromEvent(totalCount, 'click').subscribe(() => console.log(res));
 
