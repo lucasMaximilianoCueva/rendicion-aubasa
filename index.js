@@ -11,6 +11,8 @@ const input7 = document.querySelector(".inputText10");
 const input8 = document.querySelector(".inputText5");
 const input9 = document.querySelector(".inputText2");
 const input10 = document.querySelector(".inputText1");
+const input11 = document.querySelector(".inputTextRetiro");
+const input12 = document.querySelector(".inputTextCambio");
 const span = document.querySelector(".textCopy");
 const span2 = document.querySelector(".textCopy2");
 const span3 = document.querySelector(".textCopy3");
@@ -43,6 +45,8 @@ let res7 = 0;
 let res8 = 0;
 let res9 = 0;
 let res10 = 0;
+let res11 = 0;
+let res12 = 0;
 
 total = document.querySelector('.spTotal');
 totalCount = document.querySelector('.totalCount');
@@ -62,7 +66,7 @@ const observableInput = new Observable((suscriber) => {
 const suscriptor = observableInput
   .subscribe(
     (response) => {
-      span.textContent = `$${response * 1000}`
+      span.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 1000)}`
       res = response * 1000
     } 
   );
@@ -84,7 +88,7 @@ const suscriptor = observableInput
   const suscriptor2 = observableInput2
     .subscribe(
       (response) => {
-        span2.textContent = `$${response * 500}`
+        span2.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 500)}`
         res2 = response * 500
       } 
     );
@@ -106,7 +110,7 @@ const suscriptor = observableInput
   const suscriptor3 = observableInput3
     .subscribe(
       (response) => {
-        span3.textContent = `$${response * 200}` // next()
+        span3.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 200)}` // next()
         res3 = response * 200
       }
     );
@@ -128,7 +132,7 @@ const suscriptor = observableInput
   const suscriptor4 = observableInput4
     .subscribe(
       (response) => {
-        span4.textContent = `$${response * 100}` // next()
+        span4.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 100)}` // next()
         res4 = response * 100
       }
     );
@@ -150,7 +154,7 @@ const suscriptor = observableInput
   const suscriptor5 = observableInput5
     .subscribe(
       (response) => {
-        span5.textContent = `$${response * 50}` // next()
+        span5.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 50)}` // next()
         res5 = response * 50
       }
     );
@@ -172,7 +176,7 @@ const suscriptor = observableInput
   const suscriptor6 = observableInput6
     .subscribe(
       (response) => {
-        span6.textContent = `$${response * 20}` // next()
+        span6.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 20)}` // next()
         res6 = response * 20
       }
     );
@@ -194,7 +198,7 @@ const suscriptor = observableInput
   const suscriptor7 = observableInput7
     .subscribe(
       (response) => {
-        span7.textContent = `$${response * 10}` // next()
+        span7.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 10)}` // next()
         res7 = response * 10
       }
     );
@@ -216,7 +220,7 @@ const suscriptor = observableInput
   const suscriptor8 = observableInput8
     .subscribe(
       (response) => {
-        span8.textContent = `$${response * 5}` // next()
+        span8.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 5)}` // next()
         res8 = response * 5
       }
     );
@@ -238,7 +242,7 @@ const suscriptor = observableInput
   const suscriptor9 = observableInput9
     .subscribe(
       (response) => {
-        span9.textContent = `$${response * 2}` // next()
+        span9.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 2)}` // next()
         res9 = response * 2
       }
     );
@@ -260,8 +264,48 @@ const suscriptor = observableInput
   const suscriptor10 = observableInput10
     .subscribe(
       (response) => {
-        span10.textContent = `$${response * 1}` // next()
+        span10.textContent = `$${new Intl.NumberFormat("de-DE").format(response * 1)}` // next()
         res10 = response * 1
+      }
+    );
+
+       /*-------------------------------  RETIRO  ----------------------------------------*/
+
+  const observableInput11 = new Observable((suscriber) => {
+    fromEvent(input11, "input").subscribe((event) => {
+        suscriber.next(input11.value);
+    });
+    return () => {
+      console.log("Unsubscribe");
+      input11.value = '';
+      input11.disabled = true;
+    };
+  });
+  
+  const suscriptor11 = observableInput11
+    .subscribe(
+      (response) => {
+        res11 = response * 1
+      }
+    );
+
+     /*-------------------------------  RETIRO  ----------------------------------------*/
+
+  const observableInput12 = new Observable((suscriber) => {
+    fromEvent(input12, "input").subscribe((event) => {
+        suscriber.next(input12.value);
+    });
+    return () => {
+      console.log("Unsubscribe");
+      input12.value = '';
+      input12.disabled = true;
+    };
+  });
+  
+  const suscriptor12 = observableInput12
+    .subscribe(
+      (response) => {
+        res12 = response * 1
       }
     );
 
@@ -270,6 +314,11 @@ const suscriptor = observableInput
 
 
     fromEvent(totalCount, 'click').subscribe(() => {
-      total.textContent = `$${res + res2 + res3 + res4 + res5 + res6 + res7 + res8 + res9 + res10}`;
+      total.textContent = `$${new Intl.NumberFormat("de-DE")
+      .format(res + res2 + res3 + res4 + res5 + res6 + res7 + res8 + res9 + res10 + res11 - res12)
+      }`;
     });
 
+
+    let num = 1000;
+    console.log(new Intl.NumberFormat("de-DE").format(num));
